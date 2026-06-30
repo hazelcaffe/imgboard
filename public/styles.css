@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+    --base: #1e1e2e;
+    --crust: #11111b;
+    --text: #cdd6f4;
+    --subtext: #a6adc8;
+    --surface: #313244;
+    --pink: #f5c2e7;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: clamp(24px, 7vw, 96px);
+    background: var(--crust);
+    color: var(--text);
+    font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+a {
+    font: inherit;
+}
+
+.page {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+}
+
+.sections {
+    display: grid;
+    gap: 22px;
+}
+
+.folder {
+    min-width: 0;
+}
+
+.folder summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--subtext);
+    cursor: pointer;
+    list-style: none;
+}
+
+.folder summary::-webkit-details-marker {
+    display: none;
+}
+
+.folder summary::before {
+    color: var(--pink);
+    content: "+";
+}
+
+.folder[open] summary::before {
+    content: "-";
+}
+
+.folder summary::after {
+    flex: 1;
+    height: 1px;
+    background: var(--surface);
+    content: "";
+}
+
+.files {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 132px);
+    justify-content: center;
+    gap: 12px;
+}
+
+.file {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+    color: var(--subtext);
+    text-decoration: none;
+}
+
+.file:hover,
+.file:focus-visible {
+    color: var(--pink);
+    outline: 0;
+}
+
+.file img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid var(--surface);
+    background: var(--base);
+    object-fit: cover;
+}
+
+.file span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 16px;
+    }
+
+    .files {
+        grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+        gap: 8px;
+    }
+}
